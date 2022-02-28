@@ -28,6 +28,7 @@ const userResolvers = {
           email,
           password: newPassword,
           createdAt: new Date().toISOString(),
+          lastLogin: new Date(),
         });
 
         const result = await newUser.save();
@@ -61,6 +62,7 @@ const userResolvers = {
         ...user._doc,
         id: user._id,
         token,
+        lastLogin: dateToString(user.lastLogin),
       };
     },
 
